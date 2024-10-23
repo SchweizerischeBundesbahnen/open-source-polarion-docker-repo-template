@@ -24,4 +24,3 @@
 ```bash
   docker container stop <<docker-container-name>>
 ```
-
