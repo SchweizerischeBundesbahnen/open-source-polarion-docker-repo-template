@@ -8,6 +8,7 @@
     --build-arg APP_IMAGE_VERSION=X.Y.Z \
     --file Dockerfile \
     --tag <<docker-image-name>>:X.Y.Z
+    .
 ```
 
 ## Start Docker container
