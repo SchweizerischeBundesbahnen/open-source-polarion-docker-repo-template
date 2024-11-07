@@ -29,5 +29,6 @@
 ## Testing Docker image
 
 ```bash
-  docker build
+docker build -t open-source-polarion-docker-repo-template:local .
+container-structure-test test --image open-source-polarion-docker-repo-template:local --config .config/container-structure-test.yaml
 ```
