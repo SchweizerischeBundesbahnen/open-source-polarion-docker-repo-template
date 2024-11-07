@@ -1,5 +1,5 @@
-# <<TITLE>>
-<<Short Description>>
+# << TITLE >>
+<< Short Description >>
 
 ## Build Docker image
 
@@ -8,6 +8,7 @@
     --build-arg APP_IMAGE_VERSION=X.Y.Z \
     --file Dockerfile \
     --tag <<docker-image-name>>:X.Y.Z
+    .
 ```
 
 ## Start Docker container
@@ -23,4 +24,10 @@
 
 ```bash
   docker container stop <<docker-container-name>>
+```
+
+## Testing Docker image
+
+```bash
+  docker build
 ```
