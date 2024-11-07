@@ -1,5 +1,5 @@
-# <<TITLE>>
-<<Short Description>>
+# << TITLE >>
+<< Short Description >>
 
 ## Build Docker image
 
@@ -24,4 +24,10 @@
 
 ```bash
   docker container stop <<docker-container-name>>
+```
+
+## Testing Docker image
+
+```bash
+  docker build
 ```
