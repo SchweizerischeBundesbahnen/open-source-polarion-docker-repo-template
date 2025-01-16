@@ -54,7 +54,7 @@ jobs:
           args: |
             -Dsonar.branch.name=${{ github.head_ref }}
       - name: Docker Hadolint
-        uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf
+        uses: hadolint/hadolint-action@d292784f8f3eacda47060b259a580467b0ba410c
         with:
           format: tty
   release-please:
