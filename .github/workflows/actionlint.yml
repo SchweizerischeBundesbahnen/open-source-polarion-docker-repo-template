@@ -1,0 +1,29 @@
+---
+name: ActionLint
+on:
+  # Run on push to main/master branch
+  push:
+    branches: [main]
+  # Run on all pull requests
+  pull_request:
+    branches: ['**']
+  # Allow manual triggering
+  workflow_dispatch:
+jobs:
+  actionlint:
+    name: Check GitHub Actions Workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run actionlint
+        uses: reviewdog/action-actionlint@v1.65.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Report all findings as annotations directly on GitHub
+          reporter: github-check
+          # Error on warnings as well as errors
+          fail_on_error: true
+          # Comment on the pull request
+          level: error
+          filter_mode: nofilter

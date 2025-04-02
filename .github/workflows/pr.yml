@@ -15,9 +15,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55  # v5.5.0
         with:
           python-version: 3.x
       - run: pip install commitizen
       - name: Check commit messages
-        run: cz check --rev-range origin/${GITHUB_BASE_REF}..
+        run: cz check --rev-range "origin/${GITHUB_BASE_REF}.."
