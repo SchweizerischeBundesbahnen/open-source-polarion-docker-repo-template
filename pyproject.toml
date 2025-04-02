@@ -17,9 +17,6 @@ dependencies = [
 packages = [{include = "app"}]
 requires-poetry = ">=2.0"
 
-[tool.poetry.dependencies]
-python = "^3.13"
-
 [tool.poetry.group.dev.dependencies]
 pre-commit = "4.2.0"
 ruff = "0.11.2"
