@@ -15,7 +15,7 @@ jobs:
         with:
           # pick the pr HEAD instead of the merge commit
           ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
+          fetch-depth: 1
           persist-credentials: false
       - name: Lint commit messages
         uses: cocogitto/cocogitto-action@c7a74f5406bab86da17da0f0e460a69f8219a68c  # v3.11
