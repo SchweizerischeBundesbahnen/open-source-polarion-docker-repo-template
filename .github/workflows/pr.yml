@@ -15,9 +15,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}  # Only checkout the PR's HEAD commit
           fetch-depth: 0
+          fetch-tags: true
           persist-credentials: false
       - name: Lint commit messages
         uses: cocogitto/cocogitto-action@c7a74f5406bab86da17da0f0e460a69f8219a68c  # v3.11
         with:
           check: true
-          check-latest-tag-only: true
+          check-latest-tag-only: false  # set true after the first tag is set
