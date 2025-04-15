@@ -2,7 +2,8 @@ FROM python:3.13.3-alpine@sha256:18159b2be11db91f84b8f8f655cd860f805dbd9e49a583d
 LABEL maintainer="SBB Polarion Team <polarion-opensource@sbb.ch>"
 
 ARG WORKING_DIR=/app
-ARG APP_IMAGE_VERSION=0.0.0  # DO NOT CHANGE --> the version is controlled by the pipeline 
+# DO NOT CHANGE APP_IMAGE_VERSION --> It is controlled by the pipeline
+ARG APP_IMAGE_VERSION=0.0.0
 
 WORKDIR ${WORKING_DIR}
 
