@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python=">=3.13"
 dependencies = [
     "flask==3.1.0",
-    "gevent==24.11.1",
+    "gevent==25.4.2",
 ]
 
 [tool.poetry]
