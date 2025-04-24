@@ -23,7 +23,7 @@ ruff = "0.11.6"
 mypy = "1.15.0"
 
 [tool.poetry.group.test.dependencies]
-tox = "4.18.0"
+tox = "4.25.0"
 coverage = "7.8.0"
 
 [build-system]
