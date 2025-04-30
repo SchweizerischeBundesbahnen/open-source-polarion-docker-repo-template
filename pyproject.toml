@@ -1,6 +1,6 @@
 [project]
 name = "open-source-polarion-docker-repo-template"
-version = "0.0.0"  # the version is controll by the pipeline
+version = "0.0.0"  # the version is controlled by the pipeline
 description = ""
 authors = [
     {name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch"},
@@ -9,8 +9,8 @@ license = "Apache License 2.0"
 readme = "README.md"
 requires-python=">=3.13"
 dependencies = [
-    "flask==3.1.0",
-    "gevent==24.11.1",
+    "fastapi==0.115.12",
+    "uvicorn==0.34.2"
 ]
 
 [tool.poetry]
@@ -24,7 +24,13 @@ mypy = "1.15.0"
 
 [tool.poetry.group.test.dependencies]
 tox = "4.25.0"
-coverage = "7.8.0"
+docker = "7.1.0"
+# for debug source code for pytest
+pytest = "8.3.5"
+pymupdf = "1.25.5"
+pypdf = "5.4.0"
+httpx = "0.28.1"
+
 
 [build-system]
 requires = ["poetry-core"]
