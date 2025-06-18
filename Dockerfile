@@ -12,8 +12,6 @@ COPY ./app/ ${WORKING_DIR}/app/
 COPY ./poetry.lock ${WORKING_DIR}
 COPY ./pyproject.toml ${WORKING_DIR}
 
-RUN pip install --no-cache-dir -r "${WORKING_DIR}"/requirements.txt && \
-    poetry install --no-root && \
-    poetry env activate
+RUN pip install --no-cache-dir -r "${WORKING_DIR}"/requirements.txt && poetry install --no-root --only main
 
 ENTRYPOINT [ "poetry", "run", "python", "-m", "app.app" ]
