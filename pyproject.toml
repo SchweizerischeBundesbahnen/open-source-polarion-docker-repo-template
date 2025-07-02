@@ -16,7 +16,6 @@ dependencies = [
 
 [tool.poetry]
 packages = [{include = "app"}]
-requires-poetry = ">=2.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "4.2.0"
@@ -25,13 +24,12 @@ mypy = "1.16.1"
 
 [tool.poetry.group.test.dependencies]
 tox = "4.27.0"
+# for debug source code for pytest --> see tox.ini section [testenv]
 docker = "7.1.0"
-# for debug source code for pytest
 pytest = "8.4.1"
-pymupdf = "1.26.1"
-pypdf = "5.7.0"
+pytest-mock = "3.14.1"
+pytest-asyncio = "1.0.0"
 httpx = "0.28.1"
-
 
 [build-system]
 requires = ["poetry-core"]
@@ -41,6 +39,9 @@ build-backend = "poetry.core.masonry.api"
 line-length = 240
 fix = true
 show-fixes = true
+exclude = [
+    "tests/*"  # Exclude all test files from linting
+]
 
 [tool.ruff.lint]
 extend-select = [
