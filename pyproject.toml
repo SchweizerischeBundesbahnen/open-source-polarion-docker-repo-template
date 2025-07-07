@@ -7,12 +7,15 @@ authors = [
 ]
 license = "Apache License 2.0"
 readme = "README.md"
-requires-python=">=3.13"
-dependencies = [
-    "fastapi==0.115.13",
-    "uvicorn==0.34.3",
-    "requests==2.32.4",
-]
+requires-python = "3.13.2"
+# Dependencies moved back to [tool.poetry.dependencies] for Renovate compatibility
+# See: https://github.com/renovatebot/renovate/issues/33509
+# TODO: Migrate back to [project.dependencies] when Renovate adds Poetry v2 support
+# dependencies = [
+#     "fastapi==0.115.13",
+#     "uvicorn==0.34.3",
+#     "requests==2.32.4",
+# ]
 
 [tool.poetry]
 packages = [{include = "app"}]
@@ -21,7 +24,6 @@ packages = [{include = "app"}]
 fastapi = "0.115.13"
 uvicorn = "0.34.3"
 requests = "2.32.4"
-
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "4.2.0"
