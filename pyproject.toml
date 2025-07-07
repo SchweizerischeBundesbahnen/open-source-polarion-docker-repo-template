@@ -8,6 +8,7 @@ authors = [
 license = "Apache License 2.0"
 readme = "README.md"
 requires-python = ">=3.13"
+dynamic = ["dependencies"]
 # Dependencies moved back to [tool.poetry.dependencies] for Renovate compatibility
 # See: https://github.com/renovatebot/renovate/issues/33509
 # TODO: Migrate back to [project.dependencies] when Renovate adds Poetry v2 support
@@ -40,6 +41,7 @@ pytest = "8.4.1"
 pytest-mock = "3.14.1"
 pytest-asyncio = "1.0.0"
 httpx = "0.28.1"
+coverage = "7.9.2"
 
 [build-system]
 requires = ["poetry-core"]
