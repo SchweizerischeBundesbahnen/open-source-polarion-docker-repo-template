@@ -17,6 +17,12 @@ dependencies = [
 [tool.poetry]
 packages = [{include = "app"}]
 
+[tool.poetry.dependencies] # this duplication and legacy format must be kept until Renovate support is added for [project.dependencies] for pooetry-lock update
+fastapi = "0.115.13"
+uvicorn = "0.34.3"
+requests = "2.32.4"
+
+
 [tool.poetry.group.dev.dependencies]
 pre-commit = "4.2.0"
 ruff = "0.12.2"
