@@ -25,7 +25,7 @@ packages = [{include = "app"}]
 # for more information check comments above
 [tool.poetry.dependencies]
 fastapi = "0.116.2"
-uvicorn = "0.35.0"
+uvicorn = "0.36.0"
 requests = "2.32.5"
 
 [tool.poetry.group.dev.dependencies]
