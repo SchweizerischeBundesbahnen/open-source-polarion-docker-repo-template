@@ -25,7 +25,7 @@ packages = [{include = "app"}]
 # for more information check comments above
 [tool.poetry.dependencies]
 fastapi = "0.129.0"
-uvicorn = "0.40.0"
+uvicorn = "0.41.0"
 requests = "2.32.5"
 # pinning version to avoid security issues
 urllib3 = "2.6.3"
