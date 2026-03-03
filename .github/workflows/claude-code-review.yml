@@ -2,9 +2,21 @@
 name: Claude Code Review
 on:
   pull_request:
-    types: [opened, synchronize, ready_for_review, reopened]
+    types:
+      - opened
+      - synchronize
+      - ready_for_review
+      - reopened
     # Only run on code, config, and infrastructure changes
-    paths: [app/**/*.py, tests/**/*.py, Dockerfile, docker-compose.yml, tox.ini, pyproject.toml, uv.lock, '!**/*.md']
+    paths:
+      - app/**/*.py
+      - tests/**/*.py
+      - Dockerfile
+      - docker-compose.yml
+      - tox.ini
+      - pyproject.toml
+      - uv.lock
+      - '!**/*.md'
 concurrency:
   group: claude-review-${{ github.event.pull_request.number }}
   cancel-in-progress: true
