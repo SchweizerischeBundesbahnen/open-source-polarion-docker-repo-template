@@ -3,19 +3,13 @@ schemaVersion: 2.0.0
 commandTests:
   - name: Python installation - check that the python binary is in the correct location
     command: which
-    args:
-      - python
-    expectedOutput:
-      - /usr/local/bin/python
+    args: [python]
+    expectedOutput: [/usr/local/bin/python]
   - name: Python version is correct
     command: python
-    args:
-      - --version
-    expectedOutput:
-      - Python 3.14.*
+    args: [--version]
+    expectedOutput: [Python 3.14.*]
   - name: uv is installed
     command: which
-    args:
-      - uv
-    expectedOutput:
-      - /usr/local/bin/uv
+    args: [uv]
+    expectedOutput: [/usr/local/bin/uv]
