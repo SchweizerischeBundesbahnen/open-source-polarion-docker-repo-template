@@ -5,48 +5,44 @@ description = ""
 authors = [
     {name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch"},
 ]
-license = "Apache License 2.0"
+license = "Apache-2.0"
 readme = "README.md"
-requires-python = ">=3.13"
-dynamic = ["dependencies"]
-# Dependencies moved back to [tool.poetry.dependencies] for Renovate compatibility
-# See: https://github.com/renovatebot/renovate/issues/33509
-# TODO: Migrate back to [project.dependencies] when Renovate adds Poetry v2 support
-# dependencies = [
-#   "fastapi==0.115.13",
-#   "uvicorn==0.34.3",
-#   "requests==2.32.4",
-# ]
+requires-python = ">=3.14,<3.15"
 
-[tool.poetry]
-packages = [{include = "app"}]
+dependencies = [
+    "fastapi==0.133.0",
+    "uvicorn==0.41.0",
+    "requests==2.32.5",
+]
 
-# this duplication and legacy format must be kept until Renovate support is added for [project.dependencies] for poetry-lock updates
-# for more information check comments above
-[tool.poetry.dependencies]
-fastapi = "0.133.0"
-uvicorn = "0.41.0"
-requests = "2.32.5"
-# pinning version to avoid security issues
-urllib3 = "2.6.3"
+[project.urls]
+Homepage = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-docker-repo-template"
+Repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-docker-repo-template"
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "4.5.1"
-ruff = "0.15.2"
-mypy = "1.19.1"
+[dependency-groups]
+dev = [
+    "pre-commit==4.5.1",
+    "ruff==0.15.2",
+    "mypy==1.19.1",
+]
 
-[tool.poetry.group.test.dependencies]
-tox = "4.45.0"
-docker = "7.1.0"
-pytest = "9.0.2"
-pytest-mock = "3.15.1"
-pytest-asyncio = "1.3.0"
-httpx = "0.28.1"
-coverage = "7.13.4"
+test = [
+    "tox==4.45.0",
+    "tox-uv==1.33.1",
+    # for debug source code for pytest --> see tox.ini section [testenv]
+    "docker==7.1.0",
+    "pytest==9.0.2",
+    "pytest-mock==3.15.1",
+    "pytest-asyncio==1.3.0",
+    "pytest-cov==7.0.0",
+    "pytest-timeout==2.4.0",
+    "httpx==0.28.1",
+    "coverage==7.13.4",
+]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+# Set to false because this project is an application, not a library
+package = false
 
 [tool.ruff]
 line-length = 240
@@ -76,8 +72,9 @@ extend-select = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = [
-    "S101" # No assert rule (bandit)
+"tests/**" = [
+    "S101", # No assert rule (bandit)
+    "PLR2004", # No magic values (pylint)
 ]
 
 [tool.ruff.format]

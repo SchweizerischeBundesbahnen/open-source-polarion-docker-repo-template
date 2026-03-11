@@ -1,7 +1,8 @@
 ---
 name: Feature request
 description: Request an enhancement for this Polarion extension
-labels: [enhancement]
+labels:
+  - enhancement
 body:
   - type: markdown
     attributes:
