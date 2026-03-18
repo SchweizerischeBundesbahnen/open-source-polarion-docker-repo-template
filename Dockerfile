@@ -16,7 +16,7 @@ COPY .tool-versions pyproject.toml uv.lock ${WORKING_DIR}/
 COPY ./app/ ${WORKING_DIR}/app/
 
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev
+    uv sync --locked --no-dev
 
 ENV PATH="${WORKING_DIR}/.venv/bin:${PATH}"
 
