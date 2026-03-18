@@ -59,7 +59,6 @@ repos:
         exclude: (^tests/)
         args: [--config-file, pyproject.toml]
         require_serial: true  # Serial processing is required for mypy (better performance and error reporting)
-        pass_filenames: false  # Don't pass individual files, use the specified path
   - repo: local
     hooks:
       # Custom code style linter (PSP001-PSP005)
