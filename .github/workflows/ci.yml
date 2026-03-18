@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review]
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:
 permissions:
   contents: read
 env:
@@ -18,7 +18,7 @@ jobs:
   verify-with-tox:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       pull-requests: write  # Required for SonarCloud to comment on PRs and update status
     steps:
       - name: 📄 Checkout code
@@ -35,7 +35,7 @@ jobs:
         with:
           enable-cache: true
       - name: 🧱 Install dependencies
-        run: uv sync --all-groups
+        run: uv sync --all-groups --locked
       - name: 🧪 Run tests
         run: uv run tox
       - name: SonarCloud scan for PR
@@ -57,30 +57,22 @@ jobs:
           args: |
             -Dsonar.branch.name=${{ github.head_ref }}
       - name: Docker Hadolint
-        uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5
+        uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5  # v3.3.0
         with:
           format: tty
   release-please:
-    needs: verify-with-tox
-    runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' && github.ref_name == 'main'
+    uses: SchweizerischeBundesbahnen/github-workflows-polarion/.github/workflows/reusable-release-please.yml@main
     permissions:
       contents: write
       pull-requests: write
-      issues: write
-    steps:
-      - name: 🚀 release-please
-        id: release
-        uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38  # v4.4.0
-        with:
-          release-type: simple
-          include-v-in-tag: false
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      version: ${{ steps.release.outputs.version }}
+    with:
+      release-type: simple
+      include-v-in-tag: false
   docker-build-and-publish:
-    needs: release-please
+    needs: [verify-with-tox, release-please]
     runs-on: ubuntu-latest
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
     permissions:
       contents: read
       packages: write
