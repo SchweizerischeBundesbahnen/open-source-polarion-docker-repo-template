@@ -56,6 +56,7 @@ To customize logging when running the container:
 
 ```bash
 docker run --detach \
+  --init \
   --publish <<port>>:<<port>> \
   --name <<docker-image-name>> \
   --env LOG_LEVEL=DEBUG \
@@ -110,6 +111,7 @@ To start the Docker container with your custom-built image:
 
 ```bash
   docker run --detach \
+    --init \
     --publish 9080:9080 \
     --name <<docker-container-name>> \
     <<docker-image-name>>:0.0.0
