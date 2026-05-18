@@ -88,33 +88,17 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ env.REGISTRY_USERNAME }}
           password: ${{ env.REGISTRY_PASSWORD }}
-      - name: 🧱 Prepare tags for Docker meta
-        id: tags
-        env:
-          # When release-please is skipped, these values will be empty
-          release_created: ${{ needs.release-please.outputs.release_created }}
-          version: ${{ needs.release-please.outputs.version }}
-        run: |
-          tags=""
-          if [[ "$release_created" = 'true' ]]; then
-            tags="type=semver,pattern={{version}},value=$version
-          type=semver,pattern={{major}},value=$version
-          type=semver,pattern={{major}}.{{minor}},value=$version"
-          else
-            tags="type=ref,event=branch
-          type=ref,event=pr"
-          fi
-          {
-            echo 'tags<<EOF'
-            echo "$tags"
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
       - name: 🧱 Docker meta
         id: meta
         uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf  # v6.0.0
+        env:
+          version: ${{ needs.release-please.outputs.version }}
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: ${{ steps.tags.outputs.tags }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ env.version }}
+            type=semver,pattern={{major}},value=${{ env.version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.version }}
       - name: 🧱 Set up QEMU
         uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a  # v4.0.0
       - name: 🧱 Set up Docker Buildx
